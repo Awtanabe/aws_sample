@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: aws_sample_production
-  username: aws_sample
-  password: <%= ENV['AWS_SAMPLE_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
