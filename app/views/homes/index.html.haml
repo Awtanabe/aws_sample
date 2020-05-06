@@ -1,2 +1,13 @@
 .top-image
   = image_tag 'top-image.png'
+
+.container
+  .home-wrapper
+    - @posts.each do |post|
+      .item
+        .post-image
+          = image_tag 'top-image.png'
+        .post-body
+          = post.title
+
+= render 'layouts/write_button'
