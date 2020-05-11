@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     if post.save!
+      ProjectMailer.post(current_user).deliver_later
       redirect_to "/"
     else
       flash[:success] = "保存失敗"
