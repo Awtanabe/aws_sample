@@ -8,9 +8,10 @@ class PostsController < ApplicationController
   end
 
   def create
+
     post = Post.new(post_params)
     if post.save!
-      ProjectMailer.post(current_user).deliver_later
+      # ProjectMailer.post(current_user).deliver_later
       redirect_to "/"
     else
       flash[:success] = "保存失敗"
@@ -18,12 +19,24 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to root_path
+
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to root_path    
   end
 
   private
