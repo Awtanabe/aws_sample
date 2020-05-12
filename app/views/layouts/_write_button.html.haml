@@ -11,6 +11,12 @@
         %h4.modal-title 投稿する
       .modal-body
         = form_for @post, url: posts_path do |f|
+          .form-graoup
+            = f.fields_for :post_categories do |category|
+              = render 'posts/post_categories_fields', f: category    
+          .form-group
+            = link_to_add_association '子を追加', f, :post_categories , partial: 'posts/post_categories_fields',data: { association_insertion_method: 'before' }
+                    
           .form-group
             %label タイトル
             = f.text_field :title, class:'form-control'

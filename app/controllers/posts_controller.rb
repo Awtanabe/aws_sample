@@ -9,8 +9,8 @@ class PostsController < ApplicationController
 
   def create
 
-    post = Post.new(post_params)
-    if post.save!
+    @post = Post.new(post_params)
+    if @post.save!
       # ProjectMailer.post(current_user).deliver_later
       redirect_to "/"
     else
@@ -42,6 +42,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-   params.require(:post).permit(:title, :body).merge(user_id: current_user.id)
+   params.require(:post).permit(:title, :body, post_categories_attributes: [:id, :category_id, :_destroy]).merge(user_id: current_user.id)
   end
 end

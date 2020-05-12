@@ -1,0 +1,4 @@
+.nested-fields
+  = f.label :category_id
+  = f.collection_select :category_id, Category.where(user_id: current_user.id).where.not(parent_id: nil), :id, :name
+  = link_to_remove_association '削除', f, style: 'underline'

@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -30,6 +31,8 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'pry-rails'
+
+gem 'cocoon'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
