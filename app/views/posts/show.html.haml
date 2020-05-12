@@ -1,2 +1,5 @@
 %h1 Posts#show
 %p Find me in app/views/posts/show.html.haml
+
+
+= markdown(@post.body).html_safe
