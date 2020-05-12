@@ -2,15 +2,31 @@
   = image_tag 'top-image.png'
 
 .container
-  .home-wrapper
-    - @posts.each do |post|
-      .item
-        .post-image
-          = image_tag 'top-image.png'
-        .post-body
-          = link_to post.title, post_path(post)
-          = render 'layouts/write_button'
-          = link_to "編集", edit_post_path(post)
-          = link_to "削除", post_path(post), method: :delete
+  .row
+    .col-xs-8
+      .home-wrapper
+        - @posts.each do |post|
+          .item
+            .post-image
+              = image_tag 'top-image.png'
+            .post-body
+              = link_to post.title, post_path(post)
+              = render 'layouts/write_button'
+              = link_to "編集", edit_post_path(post)
+              = link_to "削除", post_path(post), method: :delete
+    .col-xs-4
+      - @parent_categories.each do |parent_c|
+        .panel.panel-primary
+          .panel-heading
+            %h2.panel-title= parent_c.name
+          - parent_c.children.each do |c_c|
+            .panel-body
+              .list-group-item{:href => "#"}
+                .panel.panel-primary
+                  .panel-heading=c_c.name
+                - c_c.posts.each do |post|
+                  .list-group-item
+                    = post.title
 
-= render 'layouts/write_button'
+    
+= render 'layouts/write_button', locals: {post: @post}
